@@ -1,0 +1,9 @@
+secrets/
+certs/
+node_modules/
+*.p12
+*.cer
+*.csr
+*.p7b
+*.key
+.DS_Store

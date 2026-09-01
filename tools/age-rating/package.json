@@ -1,0 +1,11 @@
+{
+  "name": "harmony-age-rating",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Complete the AGC age-rating questionnaire via Playwriter (connects to the running Chrome, preserving login state). One-shot script: AI pre-generates answers, script fills/verifies/submits without LLM confirmation.",
+  "dependencies": {
+    "playwriter": "0.0.56",
+    "playwright-core": "1.56.1"
+  }
+}

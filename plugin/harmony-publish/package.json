@@ -1,0 +1,9 @@
+{
+  "name": "opencli-plugin-harmony-publish",
+  "version": "0.6.0",
+  "type": "module",
+  "description": "API-first HarmonyOS build, signing, validation, and AppGallery Connect publishing workflow",
+  "peerDependencies": {
+    "@jackwener/opencli": ">=1.8.6"
+  }
+}

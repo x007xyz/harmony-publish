@@ -1,0 +1,6 @@
+{
+  "name": "harmony-publish",
+  "version": "0.6.0",
+  "description": "API-first HarmonyOS build, signing, validation, and AppGallery Connect publishing workflow",
+  "opencli": ">=1.8.6"
+}

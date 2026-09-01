@@ -1,0 +1,11 @@
+{
+  "name": "harmony-privacy-agreement",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Create AGC-hosted privacy agreements via Playwriter (connects to the running Chrome, preserving login state). One-shot script: AI pre-generates copy, script executes the full flow without LLM confirmation.",
+  "dependencies": {
+    "playwriter": "0.0.56",
+    "playwright-core": "1.56.1"
+  }
+}

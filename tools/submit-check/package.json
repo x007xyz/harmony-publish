@@ -1,0 +1,11 @@
+{
+  "name": "harmony-submit-check",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Set the three required version-page fields (all countries, free fee type, no personal data) and verify the must-fill warning is cleared. One-shot Playwriter script.",
+  "dependencies": {
+    "playwriter": "0.0.56",
+    "playwright-core": "1.56.1"
+  }
+}
