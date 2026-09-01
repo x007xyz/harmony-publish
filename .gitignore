@@ -1,5 +1,6 @@
 secrets/
 certs/
+config.json
 node_modules/
 *.p12
 *.cer

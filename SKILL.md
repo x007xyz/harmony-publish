@@ -59,6 +59,8 @@ projects.json 的 key、项目绝对路径或 displayName。
 
 ## 前置条件(每个会话检查一次)
 
+- **首次使用配置**:见下方「首次使用配置」章节,向用户询问并持久化到
+  `config.json`(不随仓库分发)。
 - 优先配置开发者级 AGC Service Account：`secrets/private.json`（技能目录内，
   勿提交到 git），通过 `--credential` 传入；或通过
   `HUAWEI_AGC_SERVICE_ACCOUNT` 环境变量。完整路由、安全约束与回退边界见
@@ -74,6 +76,44 @@ projects.json 的 key、项目绝对路径或 displayName。
   邮箱 `review@example.com`、姓名 `开发者` —— 写入各项目
   `release/appgallery.metadata.json` 的 `reviewContact` 字段,由
   `prepare-app-info` 官方 API 直接设置,无需短信验证。
+
+## 首次使用配置
+
+**每次新环境首次使用本技能时,必须先向用户询问以下信息,并写入技能目录的
+`config.json`(gitignore 排除,不随仓库分发)。已存在 `config.json` 时直接读取,
+不再重复询问;用户主动要求修改时更新。**
+
+```json
+{
+  "reviewContact": {
+    "name": "开发者",
+    "phone": "13800000000",
+    "email": "review@example.com"
+  },
+  "harmonyRoot": "/path/to/harmony",
+  "signingPasswordSource": "/path/to/AIMosaic/build-profile.json5",
+  "credentialPath": "/path/to/secrets/private.json"
+}
+```
+
+询问清单(一次问完,不要挤牙膏):
+
+1. **审核人联系方式**(姓名/手机/邮箱)—— 发布时写入
+   `release/appgallery.metadata.json` 的 `reviewContact`,由官方 API 直接设置。
+   用户不提供时用占位符,并明确告知"发布前必须替换为真实信息"。
+2. **Harmony 项目根目录**(`harmonyRoot`)—— 用于替换 `projects.json` 中的
+   `<HARMONY_ROOT>` 占位符。用户不提供时保留占位符,按项目逐个填写。
+3. **签名证书密码来源**(`signingPasswordSource`)—— 指向包含签名密码的
+   `build-profile.json5` 文件路径(configure-release-signing.mjs 读取)。
+4. **AGC Service Account 凭据路径**(`credentialPath`)—— 指向用户自备的
+   `secrets/private.json`;也可用 `HUAWEI_AGC_SERVICE_ACCOUNT` 环境变量替代。
+
+**持久化规则**:
+- `config.json` 写入技能目录根(`<skill>/config.json`),加入 `.gitignore`。
+- 每次会话开始检查:存在则读取,缺失则询问。
+- 用户提供的信息只用于本技能运行,不写入任何随仓库分发的文件。
+- 审核人联系方式等敏感信息不得出现在 `projects.json`、`SKILL.md` 或任何
+  提交到 git 的文件中。
 
 ## 项目形态很重要
 
